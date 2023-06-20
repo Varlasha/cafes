@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import CustomButton from "@/components/CustomButton.vue"
+import CustomButton from "@/components/Joint/CustomButton.vue";
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: "Start",
@@ -33,7 +33,7 @@ export default {
   height: 100vh;
   width: 100vw;
   text-align: center;
-  background-image: url('../../assets/Auth/Frame.png');
+  background-image: url('../../assets/image/Auth/Frame.png');
   background-position: center;
   background-size: cover;
   margin: auto 0;

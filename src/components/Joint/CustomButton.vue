@@ -1,5 +1,5 @@
 <template>
-    <button :type="type" :style="{ backgroundColor: BGcolor, color: color, width: sizeW }">
+    <button :type="type" :style="{ backgroundColor: BGcolor, color: color, width: sizeW }" v-on="$listeners">
         <slot />
     </button>
 </template>
@@ -11,15 +11,15 @@ export default {
         type:String,
         btnName: String,
         BGcolor: {
-            BGcolor: String,
+            type: String,
             default: "#0D7DCF"
         },
         color: {
-            color: String,
+            type: String,
             default: "#FCFCFC"
         },
          sizeW: {
-            color: String,
+            type: String,
             default: "85vw"
         }
     },
@@ -30,7 +30,6 @@ export default {
 button {
     border: none;
     border-radius: calc(1.6875vw + 15px);
-    /* min-width: 85vw; */
     min-height: 6.5vh;
     font-size: calc(1.9875vw + 13px);
     font-family: "SourceSansProBold";

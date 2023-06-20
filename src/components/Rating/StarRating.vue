@@ -2,7 +2,7 @@
     <div class="rating">
         <span v-for="(star, index) in stars" :key="index" class="star" :class="{ 'filled': index < currentRating }"
             @click="setRating(index + 1)">
-            <img class="star-image" src="../assets/Card/star.svg" alt="star">
+            <font-awesome-icon icon="star" class="star-image" />
         </span>
     </div>
 </template>

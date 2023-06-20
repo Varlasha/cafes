@@ -43,5 +43,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #373333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
+
+
 </style>

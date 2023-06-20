@@ -1,80 +1,115 @@
-<template style=" height: 100vh; width: 100vw;" >
-   <div class="container-cards" >
-            <SettingHeader title="Ваши отзывы"/>
-             <img src="../../assets/Card/add.svg" alt="add.svg" style="padding: 3% 0 8%;"/>
-        <router-link to="/Liked">
-            <div style="display: inline-flex; width: 80%; align-items: start;">
-            <div style="text-align: start;">
-                <div id="actions">Избранное</div>
-                <div id="recenrly">Недавние</div>
-            </div>
-            <img src="../../assets/Card/arrow.svg" alt="arrow">
-        </div>
+<template>
+    <div class="wrapper-page">
+        <MainHeader />
+        <div class="conteiner-pages">
+        <img src="../../assets/image/Card/add.svg" alt="" class="add-image" />
+        <router-link to="/OwnFeed" class="menu-profil">
+            <div class="text-profil">Ваши отзывы</div>
+            <font-awesome-icon icon="caret-right" class="icon-right" />
         </router-link>
-        <div style="display: flex; flex-direction: row; width: 90%; gap: 4%; 
-  flex-wrap: no-wrap;
-  overflow-x: auto;
-  padding: 0 3%;">
-            <div v-for="(item, index) in 10" :key="index" class="arr-card">
-                <CardProfil />
+        <div class="wrapper">
+            <div v-for="(item, index) in 5" :key="index" class="array-card">
+                <CardProfil title="Название ресторана" sub="от имя пользователя" />
             </div>
         </div>
-        <router-link to="/OwnFeed">
-                <div style="display: inline-flex; width: 80%; align-items: start; margin-top: 7%;">
-                <div style="text-align: start;">
-                    <div id="actions">Ваши отзывы</div>
-                    <div id="recenrly">Недавние</div>
-                </div>
-                <img src="../../assets/Card/arrow.svg" alt="arrow">
+        <router-link to="/Liked" class="menu-profil">
+            <div class="text-profil">Избранное</div>
+            <font-awesome-icon icon="caret-right" class="icon-right" />
+        </router-link>
+        <div class="wrapper">
+            <div v-for="(item, index) in 5" :key="index" class="array-card">
+                <CardProfil title="Название ресторана" sub="от имя пользователя" />
             </div>
-            </router-link>
-           <div style="display: flex; flex-direction: row; width: 96%; gap: 4%;
-  flex-wrap: no-wrap;
-  overflow-x: auto;
- padding: 3% 0 20%;">
-                <div v-for="(item, index) in 10" :key="index" class="arr-card">
-                    <CardProfil />
-                </div>
-            </div>
-        <div
-            style="bottom: 0; left: 0; position: fixed;  padding-top: 2%; margin-right: 2%; background-color: #FCFCFC; width: 100vw; ">
-            <MainFooter />
         </div>
+        </div>
+        <MainFooter />
     </div>
 </template>
+
 <script>
-import SettingHeader from '@/components/SettingHeader.vue';
-import MainFooter from '@/components/MainFooter.vue';
-import CardProfil from '@/components/CardProfil.vue';
+import MainHeader from '@/components/Joint/MainHeader.vue';
+import MainFooter from '@/components/Joint/MainFooter.vue';
+import CardProfil from '@/components/Cards/CardProfil.vue';
+
 export default {
-    name: 'AllFeedback',
+    // eslint-disable-next-line vue/multi-word-component-names
+    name: 'Profile',
     components: {
         CardProfil,
         MainFooter,
-        SettingHeader
+        MainHeader
     }
 }
 </script>
+
 <style>
-.conteiner-cards {
-    display: flex;
-    gap: 10%;
+.wrapper-page {
+    margin: 0;
+     position: absolute;
+    left: 0;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: #FCFCFC;
 }
 
-.arr-card {
+.conteiner-pages {
+    padding-top: 55%;
+    padding-bottom: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.conteiner-pages::-webkit-scrollbar {
+  width: 0px;
+}
+.add-image {
+    margin-top: 60px;
     margin-bottom: 5%;
 }
-#actions {
-    font-size: calc(1.6875vw + 12px);
-    color: #373333;
-}
-#recenrly {
-    font-size: calc(1.6875vw + 8px);
-    color: #8D8D90;
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; 
+    align-items: center;
+    height: 220px;
+    overflow-x: scroll; 
+    padding-left: 20px;
+    width: 90%; 
+} 
+
+.wrapper::-webkit-scrollbar {
+  width: 0px;
 }
 
-#actions
-#recenrly{
-  font-family: "SourceSansProRegular";
+.menu-profil {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width: 80%;
+    justify-content: start;
+    align-items: center;
+    color: #373333;
+    text-decoration: none;
+    margin-top: 4%;
+}
+
+.menu-profil:hover {
+    color: #0d7dcf;
+}
+
+.icon-right {
+    width: 6px;
+    margin-top: 2px;
+    margin-left: 4px;
+}
+
+.text-profil {
+    font-size: calc(1.6875vw + 11px);
+    font-family: "SourceSansProRegular";
 }
 </style>

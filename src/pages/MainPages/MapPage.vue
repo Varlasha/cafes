@@ -1,34 +1,36 @@
 <template>
     <div class="container">
-        <MainHeader/>
-        <OwnMap/>
-        <MainFooter/>
+        <MainHeader />
+            <OwnMap />
+        <MainFooter />
     </div>
 </template>
 
 <script>
-import MainHeader from '@/components/MainHeader.vue';
-import OwnMap from "@/components/Map/OwnMap.vue"
-import MainFooter from '@/components/MainFooter.vue';
+import MainHeader from "@/components/Joint/MainHeader.vue";
+import MainFooter from "@/components/Joint/MainFooter.vue";
+import OwnMap from "@/components/Map/OwnMap.vue";
 export default {
     components: {
         MainHeader,
         OwnMap,
-        MainFooter
-    }
+        MainFooter,
+    },
 };
 </script>
 
 <style>
 .container {
-    /* margin: 4% auto 0; */
+     height: 100vh;
+    width: 100%;
+    margin: 0;
     position: fixed;
-  margin: 0;
-  padding: 0;
-  left: 0;
-  /* top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;*/
-} 
+    left: 0;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #FCFCFC;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="containers">
-        <img src="@/assets/Auth/logo.svg" alt="logo" class="logo">
+        <img src="@/assets/image/Auth/logo.svg" alt="logo" class="logo">
         <div class="container-form">
             <form>
                 <AuthInput id="name" type="text" v-model="name" placeholder="Введите ваше имя">
@@ -20,13 +20,13 @@
             </div>
             <CustomButton BGcolor="#1877F2">
                 <div class="btn-container">
-                    <img src="@/assets/Button/Facebook.svg" alt="facebook" id="icon" />
+                    <img src="@/assets/image/Button/Facebook.svg" alt="facebook" id="icon" />
                     <div>Facebook</div>
                 </div>
             </CustomButton>
             <CustomButton BGcolor="#373333">
                 <div class="btn-container">
-                    <img src="@/assets/Button/Google.svg" alt="google" id="icon" />
+                    <img src="@/assets/image/Button/Google.svg" alt="google" id="icon" />
                     <div>Google</div>
                 </div>
             </CustomButton>
@@ -36,7 +36,7 @@
 
 <script>
 import AuthInput from "@/components/Auth/AuthInput.vue";
-import CustomButton from "@/components/CustomButton.vue";
+import CustomButton from "@/components/Joint/CustomButton.vue";
 
 export default {
     components: {

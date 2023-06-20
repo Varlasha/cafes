@@ -3,6 +3,7 @@ import App from './App.vue'
 import YmapPlugin from 'vue-yandex-maps'
 import VueRouter from 'vue-router'
 import routes from './router/routes'
+import fontawesome from './plugin/fontawesome'
 
 const settings = {
     apiKey: 'a3607e61-379e-45ca-aa9e-9552465075c0',
@@ -15,6 +16,7 @@ const settings = {
 Vue.config.productionTip = false
 Vue.use(YmapPlugin, settings)
 Vue.use(VueRouter)
+Vue.use(fontawesome)
 
 const router = new VueRouter({
     mode: 'history',

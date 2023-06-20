@@ -1,51 +1,47 @@
 <template>
-    <div id="map">
-        <yandex-map :coords="coords" :zoom="zoom" @click="onClick">
-            <ymap-marker v-for="(marker, index) in markers" :key="index" :coords="marker.coords"
-                :balloon-template="marker.balloonTemplate"></ymap-marker>
-        </yandex-map>
-        <div v-if="showPopup" class="popup">
-            <div class="Owntitle">Новый отзыв</div>
-           <form @submit.prevent="addMarker">
-          <label for="name" class="title-labl" style="margin-top: 5%;">Название ресторана:</label>
-          <input class="smth" type="text" id="namess" v-model="name" placeholder="Введите название ресторана">
-          <label for="description" class="title-labl">Отзыв:</label>
-          <StarRating/>
-          <textarea id="description" v-model="description" placeholder="Напишите ваш отзыв"></textarea>
-          <div style="display: flex; flex-direction: row; justify-content: space-between; width: 90%;">
-            <button style="width: 45%;" type="button" @click="cancelAdd">Отмена</button>
-          <button style="width: 45%; color: #FCFCFC; background-color:  #0D7DCF ;" type="submit">Создать</button>
-          </div>
-        </form>
-      </div>
+  <div class="map-container">
+    <yandex-map :coords="coords" :zoom="zoom" @click="onClick">
+      <ymap-marker v-for="(marker, index) in markers" :key="index" :coords="marker.coords">
+        <Markers slot="balloon" :title="marker.name" />
+      </ymap-marker>
+    </yandex-map>
+    <div v-if="showPopup" class="popup">
+      <div class="Owntitle">Новый отзыв</div>
+      <form @submit.prevent="addMarker">
+        <label for="name" class="title-labl">Название ресторана:</label>
+        <input class="restoran" type="text" id="namess" v-model="name" placeholder="Введите название ресторана">
+        <label for="description" class="title-labl">Отзыв:</label>
+        <StarRating />
+        <textarea id="description" v-model="description" placeholder="Напишите ваш отзыв"></textarea>
+        <div class="buttons-container">
+          <CustomButton class="cancel-button" type="button" @click="cancelAdd" BGcolor="#E5EBEC" color="#373333" sizeW="45%">Отмена
+          </CustomButton>
+          <CustomButton class="create-button" type="submit" BGcolor="#0D7DCF" color="#FCFCFC" sizeW="45%">Создать</CustomButton>
+        </div>
+      </form>
     </div>
+  </div>
 </template>
 
 <script>
-import StarRating from '../StarRating.vue';
+import Markers from '../Map/Markers.vue'
+import StarRating from '../Rating/StarRating.vue';
+import CustomButton from '../Joint/CustomButton.vue';
 export default {
   name: "OwnMap",
   components: {
-    StarRating
+    StarRating,
+    Markers,
+    CustomButton
   },
   data: () => ({
-    coords: [59.9386, 30.3141], // координаты Санкт-Петербурга
-    zoom: 10, // начальный зум
+    coords: [59.9386, 30.3141],
+    zoom: 10,
     markers: [],
     showPopup: false,
     name: "",
     description: "",
   }),
-  computed: {
-    balloonTemplate() {
-      return` 
-        <h1 class="notred">${this.name}</h1>
-        <p>${this.description}</p>
-        <p>I am here: ${this.coords}</p>
-        <img src="http://via.placeholder.com/350x150">`
-      ;
-    },
-  },
   methods: {
     onClick(e) {
       this.showPopup = true;
@@ -55,7 +51,7 @@ export default {
       if (this.name && this.description) {
         const newMarker = {
           coords: this.coords,
-          balloonTemplate: this.balloonTemplate,
+          name: this.name
         };
         this.markers.push(newMarker);
         this.showPopup = false;
@@ -72,61 +68,75 @@ export default {
 };
 </script>
 
-<style>
-.ymap-container {
-    height: 83vh;
-    width: 100vw;
-    margin: 0 auto;
+<style scoped>
+.map-container {
+  height: 100vh;
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
 }
 
-.notred {
-    color: #373333;;
+.ymap-container {
+  height: 100%;
+  width: 100vw;
 }
 
 .popup {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0px 0px 8px rgba(138, 134, 134, 0.32);
-border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0px 0px 8px rgba(138, 134, 134, 0.32);
+  border-radius: 10px;
+  width: 70%;
 }
 
-.title-labl{
-  text-align: left;
-font-size: calc(1.6875vw + 12px);
-  font-family: "SourceSansProRegular";
+.title-labl {
+  display: flex;
+  align-items: start;
   width: 90%;
-}
-
-.smth {
-  border: 1px solid rgba(55, 51, 51, 0.4);
-  border-radius: 15px;
-  min-width: 80vw;
-  min-height: 6vh;
   font-size: calc(1.6875vw + 10px);
   font-family: "SourceSansProRegular";
-  padding-left: 4.5%;
 }
 
-textarea{
-    border: 1px solid rgba(55, 51, 51, 0.4);
-  border-radius: 15px;
-  min-width: 80vw;
-  min-height: 12vh;
-  font-size: calc(1.6875vw + 15px);
+.restoran {
+  border: 1px solid rgba(55, 51, 51, 0.4);
+  border-radius: 10px;
+  width: 90%;
+  height: 30px;
+  padding-left: 14px;
+  margin-bottom: 10px;
+  font-size: calc(1.6875vw + 8px);
   font-family: "SourceSansProRegular";
-  padding: 4%;
 }
 
-.Owntitle{
-  font-size: calc(1.6875vw + 20px);
+textarea {
+  border: 1px solid rgba(55, 51, 51, 0.4);
+  border-radius: 15px;
+  font-size: calc(1.6875vw + 8px);
+  width: 90%;
+  height: 60px;
+  padding-left: 20px;
+  font-family: "SourceSansProRegular";
+}
+
+.Owntitle {
+  font-size: calc(1.6875vw + 12px);
   font-family: "PlayfairDisplayBold";
+  margin-bottom: 20px;
 }
 
-#map {
-  margin: 0 auto;
+.form-group {
+  margin-bottom: 20px;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
 }
 </style>

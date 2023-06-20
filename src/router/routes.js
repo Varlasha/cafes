@@ -4,12 +4,20 @@ import MapPageVue from '@/pages/MainPages/MapPage.vue'
 import Start from '@/pages/Auth/Start.vue'
 import AllFeedback from '@/pages/MainPages/AllFeedback.vue'
 import Profile from '@/pages/MainPages/Profile.vue'
-import OwnFeed from '@/pages/MainPages/OwnFeed.vue'
-import Liked from '@/pages/MainPages/Liked.vue'
+import OwnFeed from '@/pages/Lists/OwnFeed.vue'
+import Liked from '@/pages/Lists/Liked.vue'
+import Test from '@/pages/Test.vue'
+import BGMenu from '@/pages/MenuSettings/BGMenu.vue'
+import NewFeedback from '@/pages/Lists/NewFeedback.vue'
 export default [{
         path: '/',
         name: 'Start',
         component: Start
+    },
+    {
+        path: '/Test',
+        name: 'Test',
+        component: Test
     },
     {
         path: '/SignIn',
@@ -45,5 +53,16 @@ export default [{
         path: '/Liked',
         name: 'Liked',
         component: Liked
+    },
+    {
+        path: '/BGMenu',
+        name: 'BGMenu',
+        component: BGMenu,
+        meta: { transitionName: 'slide' }
+    },
+    {
+        path: '/NewFeedback',
+        name: 'NewFeedback',
+        component: NewFeedback
     }
 ]
